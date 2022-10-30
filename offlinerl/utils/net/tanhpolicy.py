@@ -36,7 +36,7 @@ class TanhNormal(Distribution):
     
     @mode.setter
     def mode(self, val):
-        self.mode = val
+        super(self.__class__, self.__class__).mode.__set__(self, val)
 
     def sample_n(self, n, return_pre_tanh_value=False):
         z = self.normal.sample_n(n)
