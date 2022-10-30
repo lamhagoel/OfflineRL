@@ -27,8 +27,8 @@ class BaseAlgo(ABC):
         
         self.repo = repo
         self.exp_logger = init_exp_logger(repo = repo, experiment_name = exp_name)
-        if self.exp_logger.repo is not None:  # a naive fix of aim exp_logger.repo is None
-            self.index_path = self.exp_logger.repo.index_path
+        if self.exp_logger.repo_path is not None:  # a naive fix of aim exp_logger.repo is None
+            self.index_path = self.exp_logger.repo_path
         else:
             repo = os.path.join(log_path(),"./.aim")
             if not os.path.exists(repo):
