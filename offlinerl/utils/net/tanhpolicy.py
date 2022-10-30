@@ -164,4 +164,4 @@ class TanhGaussianPolicy(ActorProb, BasePolicy):
         return TanhNormal(mean, std)
     
     def policy_infer(self, obs):
-        return self(obs).mode
+        return self(torch.t(obs)).mode
