@@ -26,9 +26,12 @@ class TanhNormal(Distribution):
         self.normal_std = normal_std
         self.normal = Normal(normal_mean, normal_std)
         self.epsilon = epsilon
-        self.model = torch.tanh(normal_mean)
         self.max_action = max_action
         self.min_action = min_action
+        
+    @property
+    def mode(self):
+        return torch.tanh(self.normal_mean)
         
     def sample_n(self, n, return_pre_tanh_value=False):
         z = self.normal.sample_n(n)
@@ -161,4 +164,4 @@ class TanhGaussianPolicy(ActorProb, BasePolicy):
         return TanhNormal(mean, std)
     
     def policy_infer(self, obs):
-        return self(obs).model
+        return self(obs).mode
