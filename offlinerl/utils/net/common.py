@@ -110,7 +110,7 @@ class Net(nn.Module):
         """Mapping: s -> flatten -> logits."""
 
         s = s.reshape(s.size(0), -1)
-        print(s.size)
+        print(s.size())
         logits = self.model(s)
         if self.dueling is not None:  # Dueling DQN
             q, v = self.Q(logits), self.V(logits)
