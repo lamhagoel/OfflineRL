@@ -37,8 +37,10 @@ def test_one_trail_sp_local(env, policy):
     
     while not done:
         state = state
-        action = policy.get_action(state).reshape(-1, act_dim)
-        print(action.shape)
+        action = policy.get_action(state)
+        print("Before: " + action.shape)
+        action = action.reshape(act_dim)
+        print("After: " + action.shape)
         # print("actions: ", action[0:3,])
         state, reward, done, _ = env.step(action)
         rewards += reward
