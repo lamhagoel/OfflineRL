@@ -33,6 +33,7 @@ def test_one_trail_sp_local(env, policy):
     rewards = 0
     lengths = 0
     act_dim = env.action_space.shape[0]
+    print("Expected action shape: " + env.action_space.shape)
     
     while not done:
         state = state
