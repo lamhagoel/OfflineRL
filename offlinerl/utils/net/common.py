@@ -30,8 +30,8 @@ class BasePolicy(ABC):
     
     def get_action(self, obs):
         obs_tensor = torch.as_tensor(obs, device=next(self.parameters()).device, dtype=torch.float32)
-        if (obs_tensor.dim() == 1):
-            obs_tensor = obs_tensor[None, :]
+#         if (obs_tensor.dim() == 1):
+#             obs_tensor = obs_tensor[None, :]
         act = to_array_as(self.policy_infer(obs_tensor), obs)
         
         return act
@@ -112,7 +112,7 @@ class Net(nn.Module):
         """Mapping: s -> flatten -> logits."""
 
         s = s.reshape(s.size(0), -1)
-        print(s.size())
+#         print(s.size())
         logits = self.model(s)
         if self.dueling is not None:  # Dueling DQN
             q, v = self.Q(logits), self.V(logits)
