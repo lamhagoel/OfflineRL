@@ -147,7 +147,7 @@ class TanhGaussianPolicy(ActorProb, BasePolicy):
         :param deterministic: If True, do not sample
         :param return_log_prob: If True, return a sample and its log probability
         """
-        print("Obs size: " + str(obs.size()))
+#         print("Obs size: " + str(obs.size()))
         logits, h = self.preprocess(obs, state)
         mean = self.mu(logits)
         
