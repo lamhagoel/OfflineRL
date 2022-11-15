@@ -110,6 +110,7 @@ class AlgoTrainer(BaseAlgo):
         epoch = 0
         cnt = 0
         while True:
+            print("Transition epoch: " + str(epoch))
             epoch += 1
             idxs = np.random.randint(train_buffer.shape[0], size=[self.transition.ensemble_size, train_buffer.shape[0]])
             for batch_num in range(int(np.ceil(idxs.shape[-1] / batch_size))):
@@ -150,6 +151,7 @@ class AlgoTrainer(BaseAlgo):
         rew_min = train_buffer['rew'].min()
 
         for epoch in range(self.args['max_epoch']):
+            print("Policy epoch: " + str(epoch))
             # collect data
             with torch.no_grad():
                 obs = train_buffer.sample(int(self.args['data_collection_per_epoch']))['obs']
